@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolão — Copa do Mundo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Narrow:wght@600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Paleta: verde-garrafa profundo, papel quente, acento âmbar discreto */
+  --tinta: #14241c;          /* verde quase preto - texto/fundo escuro */
+  --tinta-2: #1b3026;
+  --garrafa: #1f4034;        /* verde garrafa */
+  --musgo: #2d5544;
+  --papel: #f4f1e9;          /* papel quente */
+  --papel-2: #ebe6d8;
+  --linha: #d8d1c0;          /* hairlines */
+  --ambar: #c8954a;          /* acento âmbar/dourado fosco */
+  --ambar-claro: #e0b878;
+  --vinho: #7a2e2e;          /* destaque alternativo */
+  --carvao: #2a2a26;
+  --cinza: #6b6a62;
+  --cinza-claro: #9a988d;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Archivo', system-ui, sans-serif;
+  --cond: 'Archivo Narrow', 'Archivo', sans-serif;
+  --mono: 'Spline Sans Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; background: var(--papel); min-height: 100vh; }
+
+/* ─────────── CABEÇALHO (masthead de jornal) ─────────── */
+.masthead {
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 22px 24px 18px;
+  position: relative;
+}
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(244,241,233,0.18);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+.masthead-kicker {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ambar-claro);
+}
+.masthead-edicao {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--cinza-claro);
+}
+.masthead-titulo {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(30px, 8vw, 46px);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+.masthead-titulo em {
+  font-style: italic;
+  color: var(--ambar-claro);
+  font-weight: 500;
+}
+.masthead-sub {
+  font-family: var(--cond);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cinza-claro);
+  margin-top: 8px;
+}
+
+/* ─────────── NAVEGAÇÃO ─────────── */
+.nav {
+  display: flex;
+  background: var(--tinta-2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid var(--ambar);
+}
+.nav-btn {
+  flex: 1;
+  padding: 13px 8px;
+  background: none;
+  border: none;
+  border-right: 1px solid rgba(244,241,233,0.08);
+  color: var(--cinza-claro);
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.18s, background 0.18s;
+  position: relative;
+}
+.nav-btn:last-child { border-right: none; }
+.nav-btn .num {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ambar);
+  display: block;
+  margin-bottom: 2px;
+  letter-spacing: 0.1em;
+}
+.nav-btn.ativa { color: var(--papel); background: var(--garrafa); }
+.nav-btn.ativa .num { color: var(--ambar-claro); }
+.nav-btn:hover:not(.ativa) { color: var(--papel); }
+
+/* ─────────── PÁGINAS ─────────── */
+.pagina { display: none; padding: 22px 24px 40px; }
+.pagina.ativa { display: block; }
+
+/* ─────────── SELETOR DE PARTICIPANTE ─────────── */
+.seletor {
+  margin-bottom: 22px;
+  border: 1px solid var(--linha);
+  background: var(--papel-2);
+}
+.seletor-head {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--linha);
+}
+.seletor-btns { display: flex; flex-wrap: wrap; }
+.seletor-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: 12px 6px;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--linha);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.seletor-btn:last-child { border-right: none; }
+.seletor-btn:hover { background: var(--papel); }
+.seletor-btn.ativo { background: var(--garrafa); }
+.iniciais {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--papel);
+  border: 1.5px solid rgba(0,0,0,0.1);
+}
+.seletor-nome {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+.seletor-btn.ativo .seletor-nome { color: var(--papel); }
+
+/* Cores dos avatares - tons sóbrios */
+.c-gigi { background: #2d5544; }
+.c-dede { background: #2a4a6b; }
+.c-gu   { background: #5a3a6b; }
+.c-ve   { background: #8a5a2a; }
+.c-keth { background: #7a2e2e; }
+
+/* ─────────── AVISO / BANNER ─────────── */
+.aviso {
+  border-left: 3px solid var(--ambar);
+  background: var(--papel-2);
+  padding: 13px 16px;
+  margin-bottom: 20px;
+}
+.aviso-titulo {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vinho);
+  margin-bottom: 4px;
+}
+.aviso-texto { font-size: 13px; color: var(--carvao); line-height: 1.55; }
+
+.banner-ok {
+  border-left: 3px solid var(--garrafa);
+  background: var(--papel-2);
+  padding: 13px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.banner-ok-marca {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--garrafa);
+  line-height: 1;
+}
+.banner-ok-txt strong {
+  display: block;
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--garrafa);
+}
+.banner-ok-txt span { font-size: 12px; color: var(--cinza); }
+
+/* ─────────── BARRA DE PROGRESSO ─────────── */
+.progresso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--linha);
+}
+.progresso-num {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--tinta);
+  line-height: 1;
+}
+.progresso-num small {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--cinza);
+  font-weight: 400;
+}
+.progresso-info {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cinza);
+}
+.progresso-track {
+  flex: 1;
+  height: 3px;
+  background: var(--linha);
+  position: relative;
+}
+.progresso-fill {
+  height: 100%;
+  background: var(--ambar);
+  transition: width 0.6s ease;
+}
+
+/* ─────────── SEÇÃO DE RODADA ─────────── */
+.rodada {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 30px 0 14px;
+}
+.rodada:first-of-type { margin-top: 4px; }
+.rodada-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ambar);
+  letter-spacing: 0.05em;
+}
+.rodada-nome {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+  white-space: nowrap;
+}
+.rodada-linha { flex: 1; height: 1px; background: var(--linha); }
+
+/* ─────────── CARD DE JOGO ─────────── */
+.jogo {
+  border-bottom: 1px solid var(--linha);
+  padding: 16px 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+.jogo.brasil { background: linear-gradient(90deg, rgba(200,149,74,0.07), transparent 70%); margin: 0 -24px; padding: 16px 24px; }
+.jogo-num {
+  position: absolute;
+  top: 16px; left: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--cinza-claro);
+}
+.jogo.brasil .jogo-num { left: 24px; }
+
+.lado {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lado.casa { align-items: flex-end; text-align: right; }
+.lado.fora { align-items: flex-start; text-align: left; }
+.lado-time {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--tinta);
+}
+.jogo.brasil .lado-time { color: var(--garrafa); }
+
+.centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 96px;
+}
+.centro-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--cinza);
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+}
+.placar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.placar-input {
+  width: 38px; height: 40px;
+  border: 1px solid var(--linha);
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 19px;
+  text-align: center;
+  -moz-appearance: textfield;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.placar-input:focus { border-color: var(--ambar); background: #fff; }
+.placar-input:disabled {
+  background: var(--papel-2);
+  color: var(--cinza);
+  border-color: var(--linha);
+  cursor: not-allowed;
+}
+.placar-input::-webkit-inner-spin-button,
+.placar-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.placar-x {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--cinza);
+}
+.placar-salvo {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--garrafa);
+  height: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.placar-salvo.show { opacity: 1; }
+
+.resultado-tag {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--vinho);
+  background: rgba(122,46,46,0.07);
+  padding: 2px 8px;
+  border: 1px solid rgba(122,46,46,0.2);
+}
+
+/* ─────────── BOTÃO CONFIRMAR ─────────── */
+.confirmar-area {
+  position: sticky;
+  bottom: 16px;
+  margin-top: 28px;
+  z-index: 50;
+}
+.btn-confirmar {
+  width: 100%;
+  padding: 16px;
+  background: var(--tinta);
+  color: var(--papel);
+  border: none;
+  font-family: var(--cond);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 6px 24px rgba(20,36,28,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-confirmar::before { content: '—'; color: var(--ambar); }
+.btn-confirmar::after { content: '—'; color: var(--ambar); }
+.btn-confirmar:hover { background: var(--garrafa); }
+
+/* ─────────── RANKING ─────────── */
+.regras {
+  border: 1px solid var(--linha);
+  margin-bottom: 26px;
+}
+.regras-head {
+  background: var(--tinta);
+  color: var(--papel);
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+}
+.regra {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--linha);
+}
+.regra:last-child { border-bottom: none; }
+.regra-pts {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ambar);
+  width: 30px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.regra-txt { font-size: 13px; color: var(--carvao); line-height: 1.45; }
+.regra-txt strong { color: var(--tinta); }
+
+.rank-tabela { border: 1px solid var(--linha); }
+.rank-linha {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--linha);
+  position: relative;
+}
+.rank-linha:last-child { border-bottom: none; }
+.rank-linha.lider { background: var(--tinta); color: var(--papel); }
+.rank-pos {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--cinza-claro);
+  text-align: center;
+  line-height: 1;
+}
+.rank-linha.lider .rank-pos { color: var(--ambar-claro); }
+.rank-pos.medalha-1 { color: var(--ambar); }
+.rank-pessoa { display: flex; align-items: center; gap: 12px; }
+.rank-pessoa .iniciais { width: 38px; height: 38px; font-size: 16px; }
+.rank-nome {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--tinta);
+}
+.rank-linha.lider .rank-nome { color: var(--papel); }
+.rank-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--cinza);
+  margin-top: 2px;
+}
+.rank-linha.lider .rank-meta { color: var(--cinza-claro); }
+.rank-pontos { text-align: right; }
+.rank-pontos-num {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--tinta);
+}
+.rank-linha.lider .rank-pontos-num { color: var(--ambar-claro); }
+.rank-pontos-num.zero { color: var(--cinza-claro); }
+.rank-pontos-label {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cinza);
+}
+.rank-linha.lider .rank-pontos-label { color: var(--cinza-claro); }
+
+/* ─────────── RESULTADOS (admin) ─────────── */
+.res-jogo {
+  border-bottom: 1px solid var(--linha);
+  padding: 14px 0;
+}
+.res-jogo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.res-jogo-times {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--tinta);
+}
+.res-jogo-data { font-family: var(--mono); font-size: 10px; color: var(--cinza); }
+.res-controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.res-input {
+  width: 46px; height: 38px;
+  border: 1px solid var(--linha);
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  -moz-appearance: textfield;
+  outline: none;
+}
+.res-input:focus { border-color: var(--ambar); }
+.res-input::-webkit-inner-spin-button,
+.res-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.res-x { font-family: var(--serif); font-style: italic; color: var(--cinza); }
+.res-btn {
+  margin-left: auto;
+  padding: 9px 18px;
+  background: var(--garrafa);
+  color: var(--papel);
+  border: none;
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.res-btn:hover { background: var(--musgo); }
+.res-btn.salvo { background: var(--papel-2); color: var(--garrafa); border: 1px solid var(--garrafa); }
+
+/* ─────────── RODAPÉ ─────────── */
+.rodape {
+  background: var(--tinta);
+  color: var(--cinza-claro);
+  padding: 24px;
+  text-align: center;
+  font-family: var(--cond);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.rodape-marca {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ambar-claro);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 6px;
+}
+
+/* ─────────── MODAL ─────────── */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(20,36,28,0.72);
+  backdrop-filter: blur(3px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s;
+}
+.modal.show { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--papel);
+  max-width: 400px;
+  width: 100%;
+  border-top: 4px solid var(--ambar);
+  transform: translateY(14px);
+  transition: transform 0.22s;
+}
+.modal.show .modal-box { transform: translateY(0); }
+.modal-corpo { padding: 28px 26px 24px; }
+.modal-kicker {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vinho);
+  margin-bottom: 8px;
+}
+.modal-titulo {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+.modal-texto { font-size: 13.5px; color: var(--carvao); line-height: 1.6; margin-bottom: 22px; }
+.modal-texto strong { color: var(--tinta); }
+.modal-btns { display: flex; border-top: 1px solid var(--linha); }
+.modal-cancel {
+  flex: 1;
+  padding: 16px;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--linha);
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.modal-cancel:hover { background: var(--papel-2); }
+.modal-ok {
+  flex: 2;
+  padding: 16px;
+  background: var(--tinta);
+  border: none;
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--papel);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.modal-ok:hover { background: var(--garrafa); }
+
+/* ─────────── TOAST ─────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(70px);
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 12px 22px;
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+  z-index: 999;
+  white-space: nowrap;
+  border-left: 3px solid var(--ambar);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--papel-2); }
+::-webkit-scrollbar-thumb { background: var(--garrafa); }
+
+/* Badge confirmado no seletor */
+.seletor-blq {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--garrafa);
+  background: rgba(31,64,52,0.12);
+  border: 1px solid rgba(31,64,52,0.25);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.seletor-btn.ativo .seletor-blq {
+  color: var(--ambar-claro);
+  background: rgba(200,149,74,0.15);
+  border-color: rgba(200,149,74,0.3);
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed; inset: 0;
+  background: var(--papel);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.loading-titulo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--garrafa);
+}
+.loading-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--cinza);
+  text-transform: uppercase;
+}
+.loading-bar {
+  width: 120px;
+  height: 2px;
+  background: var(--linha);
+  position: relative;
+  overflow: hidden;
+}
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: var(--ambar);
+  animation: load-sweep 1s ease-in-out infinite;
+}
+@keyframes load-sweep {
+  to { left: 100%; }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span class="masthead-kicker">Bolão Particular</span>
+    <span class="masthead-edicao">EUA · MÉX · CAN — 2026</span>
+  </div>
+  <h1 class="masthead-titulo">Copa do <em>Mundo</em></h1>
+  <div class="masthead-sub">Palpites & Classificação — 11 Junho a 19 Julho</div>
+</header>
+
+<nav class="nav">
+  <button class="nav-btn ativa" onclick="mudarAba('palpites')"><span class="num">01</span>Palpites</button>
+  <button class="nav-btn" onclick="mudarAba('ranking')"><span class="num">02</span>Classificação</button>
+  <button class="nav-btn" onclick="mudarAba('resultados')"><span class="num">03</span>Resultados</button>
+</nav>
+
+<section id="pag-palpites" class="pagina ativa">
+  <div class="seletor">
+    <div class="seletor-head">Selecione seu nome</div>
+    <div class="seletor-btns" id="seletor-btns"></div>
+  </div>
+  <div class="progresso">
+    <div class="progresso-num" id="prog-num">0<small>/104</small></div>
+    <div class="progresso-track"><div class="progresso-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="progresso-info">Jogos<br>Realizados</div>
+  </div>
+  <div id="jogos-lista"></div>
+</section>
+
+<section id="pag-ranking" class="pagina">
+  <div class="regras">
+    <div class="regras-head">Critério de Pontuação</div>
+    <div class="regra"><span class="regra-pts">3</span><span class="regra-txt"><strong>Placar exato.</strong> Acertou o número de gols dos dois times.</span></div>
+    <div class="regra"><span class="regra-pts">1</span><span class="regra-txt"><strong>Resultado certo.</strong> Acertou o vencedor ou o empate, errou o placar.</span></div>
+    <div class="regra"><span class="regra-pts">0</span><span class="regra-txt"><strong>Errou.</strong> Resultado diferente do previsto.</span></div>
+  </div>
+  <div class="rank-tabela" id="rank-lista"></div>
+</section>
+
+<section id="pag-resultados" class="pagina">
+  <div class="progresso">
+    <div class="progresso-num" id="prog-num2">0<small>/104</small></div>
+    <div class="progresso-track"><div class="progresso-fill" id="prog-fill2" style="width:0%"></div></div>
+    <div class="progresso-info">Lançar<br>Resultados</div>
+  </div>
+  <div id="resultados-lista"></div>
+</section>
+
+<footer class="rodape">
+  <div class="rodape-marca">Bolão da Copa</div>
+  Copa do Mundo FIFA 2026 — Edição Particular
+</footer>
+
+
+<div class="loading-overlay" id="loading">
+  <div class="loading-titulo">Bolão da Copa</div>
+  <div class="loading-bar"></div>
+  <div class="loading-sub">Carregando dados…</div>
+</div>
+
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-corpo">
+      <div class="modal-kicker">Ação Definitiva</div>
+      <div class="modal-titulo">Confirmar e bloquear seus palpites?</div>
+      <div class="modal-texto">
+        Esta ação <strong>não pode ser desfeita</strong>. Depois de confirmar, todos os seus placares ficam registrados e <strong>nenhuma alteração será permitida</strong>. Revise com calma antes de prosseguir.
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="fecharModal()">Voltar</button>
+      <button class="modal-ok" onclick="confirmarPalpites()">Confirmar palpites</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Salvo</div>
+
+<!-- Supabase JS via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ── DADOS ──────────────────────────────────────────────────────────────
+const PARTICIPANTES = [
+  { id: 'gigi', nome: 'Gigi', avatar: 'c-gigi', ini: 'G' },
+  { id: 'dede', nome: 'Dedé', avatar: 'c-dede', ini: 'D' },
+  { id: 'gu',   nome: 'Gu',   avatar: 'c-gu',   ini: 'G' },
+  { id: 've',   nome: 'Vê',   avatar: 'c-ve',   ini: 'V' },
+  { id: 'keth', nome: 'Keth', avatar: 'c-keth', ini: 'K' },
+];
+
+const JOGOS = [
+  // ═══ 1ª RODADA ═══
+  { id:1,  data:'11/06 · 16h', casa:'México',       fora:'África do Sul',  local:'Cidade do México', rodada:1 },
+  { id:2,  data:'11/06 · 23h', casa:'Coreia do Sul', fora:'Tchéquia',       local:'Guadalajara',      rodada:1 },
+  { id:3,  data:'12/06 · 16h', casa:'Canadá',        fora:'Bósnia-Herz.',   local:'Toronto',          rodada:1 },
+  { id:4,  data:'12/06 · 22h', casa:'EUA',           fora:'Paraguai',       local:'Los Angeles',      rodada:1 },
+  { id:5,  data:'13/06 · 01h', casa:'Austrália',     fora:'Turquia',        local:'Vancouver',        rodada:1 },
+  { id:6,  data:'13/06 · 16h', casa:'Catar',         fora:'Suíça',          local:'San Francisco',    rodada:1 },
+  { id:7,  data:'13/06 · 19h', casa:'Brasil',        fora:'Marrocos',       local:'Nova York/NJ',     rodada:1, brasil:true },
+  { id:8,  data:'13/06 · 22h', casa:'Haiti',         fora:'Escócia',        local:'Boston',           rodada:1 },
+  { id:9,  data:'14/06 · 14h', casa:'Alemanha',      fora:'Curaçao',        local:'Houston',          rodada:1 },
+  { id:10, data:'14/06 · 17h', casa:'Holanda',       fora:'Japão',          local:'Dallas',           rodada:1 },
+  { id:11, data:'14/06 · 20h', casa:'Costa do Marfim',fora:'Equador',       local:'Filadélfia',       rodada:1 },
+  { id:12, data:'14/06 · 23h', casa:'Ucrânia',       fora:'Tunísia',        local:'Monterrey',        rodada:1 },
+  { id:13, data:'15/06 · 13h', casa:'Espanha',       fora:'Cabo Verde',     local:'Atlanta',          rodada:1 },
+  { id:14, data:'15/06 · 16h', casa:'Bélgica',       fora:'Egito',          local:'Seattle',          rodada:1 },
+  { id:15, data:'15/06 · 19h', casa:'Arábia Saudita',fora:'Uruguai',        local:'Miami',            rodada:1 },
+  { id:16, data:'15/06 · 22h', casa:'Irã',           fora:'Nova Zelândia',  local:'Los Angeles',      rodada:1 },
+  { id:17, data:'16/06 · 14h', casa:'Argentina',     fora:'Argélia',        local:'Kansas City',      rodada:1 },
+  { id:18, data:'16/06 · 16h', casa:'França',        fora:'Senegal',        local:'Nova York/NJ',     rodada:1 },
+  { id:19, data:'16/06 · 19h', casa:'Bolívia',       fora:'Noruega',        local:'Boston',           rodada:1 },
+  { id:20, data:'17/06 · 01h', casa:'Áustria',       fora:'Jordânia',       local:'San Francisco',    rodada:1 },
+  { id:21, data:'17/06 · 14h', casa:'Portugal',      fora:'RD Congo',       local:'Houston',          rodada:1 },
+  { id:22, data:'17/06 · 17h', casa:'Inglaterra',    fora:'Croácia',        local:'Dallas',           rodada:1 },
+  { id:23, data:'17/06 · 20h', casa:'Gana',          fora:'Panamá',         local:'Toronto',          rodada:1 },
+  { id:24, data:'17/06 · 23h', casa:'Uzbequistão',   fora:'Colômbia',       local:'Cidade do México', rodada:1 },
+  // ═══ 2ª RODADA ═══
+  { id:25, data:'18/06 · 13h', casa:'Tchéquia',      fora:'África do Sul',  local:'Atlanta',          rodada:2 },
+  { id:26, data:'18/06 · 16h', casa:'Suíça',         fora:'Bósnia-Herz.',   local:'Los Angeles',      rodada:2 },
+  { id:27, data:'18/06 · 19h', casa:'Canadá',        fora:'Catar',          local:'Vancouver',        rodada:2 },
+  { id:28, data:'18/06 · 22h', casa:'México',        fora:'Coreia do Sul',  local:'Guadalajara',      rodada:2 },
+  { id:29, data:'19/06 · 01h', casa:'Turquia',       fora:'Paraguai',       local:'San Francisco',    rodada:2 },
+  { id:30, data:'19/06 · 16h', casa:'EUA',           fora:'Austrália',      local:'Seattle',          rodada:2 },
+  { id:31, data:'19/06 · 19h', casa:'Escócia',       fora:'Marrocos',       local:'Boston',           rodada:2 },
+  { id:32, data:'19/06 · 22h', casa:'Brasil',        fora:'Haiti',          local:'Filadélfia',       rodada:2, brasil:true },
+  { id:33, data:'20/06 · 14h', casa:'Holanda',       fora:'Ucrânia',        local:'Houston',          rodada:2 },
+  { id:34, data:'20/06 · 17h', casa:'Alemanha',      fora:'Costa do Marfim',local:'Toronto',          rodada:2 },
+  { id:35, data:'20/06 · 21h', casa:'Equador',       fora:'Curaçao',        local:'Kansas City',      rodada:2 },
+  { id:36, data:'21/06 · 01h', casa:'Tunísia',       fora:'Japão',          local:'Monterrey',        rodada:2 },
+  { id:37, data:'21/06 · 13h', casa:'Espanha',       fora:'Arábia Saudita', local:'Atlanta',          rodada:2 },
+  { id:38, data:'21/06 · 16h', casa:'Bélgica',       fora:'Irã',            local:'Los Angeles',      rodada:2 },
+  { id:39, data:'21/06 · 19h', casa:'Uruguai',       fora:'Cabo Verde',     local:'Miami',            rodada:2 },
+  { id:40, data:'21/06 · 22h', casa:'Nova Zelândia', fora:'Egito',          local:'Vancouver',        rodada:2 },
+  { id:41, data:'22/06 · 14h', casa:'Argentina',     fora:'Áustria',        local:'Dallas',           rodada:2 },
+  { id:42, data:'22/06 · 18h', casa:'França',        fora:'Bolívia',        local:'Filadélfia',       rodada:2 },
+  { id:43, data:'22/06 · 21h', casa:'Noruega',       fora:'Senegal',        local:'Nova York/NJ',     rodada:2 },
+  { id:44, data:'23/06 · 00h', casa:'Jordânia',      fora:'Argélia',        local:'San Francisco',    rodada:2 },
+  { id:45, data:'23/06 · 14h', casa:'Portugal',      fora:'Uzbequistão',    local:'Houston',          rodada:2 },
+  { id:46, data:'23/06 · 17h', casa:'Inglaterra',    fora:'Gana',           local:'Boston',           rodada:2 },
+  { id:47, data:'23/06 · 20h', casa:'Panamá',        fora:'Croácia',        local:'Toronto',          rodada:2 },
+  { id:48, data:'23/06 · 23h', casa:'Colômbia',      fora:'RD Congo',       local:'Guadalajara',      rodada:2 },
+  // ═══ 3ª RODADA ═══
+  { id:49, data:'24/06 · 16h', casa:'Suíça',         fora:'Canadá',         local:'Vancouver',        rodada:3 },
+  { id:50, data:'24/06 · 16h', casa:'Bósnia-Herz.',  fora:'Catar',          local:'Seattle',          rodada:3 },
+  { id:51, data:'24/06 · 19h', casa:'Escócia',       fora:'Brasil',         local:'Miami',            rodada:3, brasil:true },
+  { id:52, data:'24/06 · 19h', casa:'Marrocos',      fora:'Haiti',          local:'Atlanta',          rodada:3 },
+  { id:53, data:'24/06 · 22h', casa:'Tchéquia',      fora:'México',         local:'Cidade do México', rodada:3 },
+  { id:54, data:'24/06 · 22h', casa:'África do Sul', fora:'Coreia do Sul',  local:'Monterrey',        rodada:3 },
+  { id:55, data:'25/06 · 17h', casa:'Equador',       fora:'Alemanha',       local:'Nova York/NJ',     rodada:3 },
+  { id:56, data:'25/06 · 17h', casa:'Curaçao',       fora:'Costa do Marfim',local:'Filadélfia',       rodada:3 },
+  { id:57, data:'25/06 · 20h', casa:'Japão',         fora:'Ucrânia',        local:'Dallas',           rodada:3 },
+  { id:58, data:'25/06 · 20h', casa:'Tunísia',       fora:'Holanda',        local:'Kansas City',      rodada:3 },
+  { id:59, data:'25/06 · 23h', casa:'Turquia',       fora:'EUA',            local:'Los Angeles',      rodada:3 },
+  { id:60, data:'25/06 · 23h', casa:'Paraguai',      fora:'Austrália',      local:'San Francisco',    rodada:3 },
+  { id:61, data:'26/06 · 16h', casa:'Noruega',       fora:'França',         local:'Boston',           rodada:3 },
+  { id:62, data:'26/06 · 16h', casa:'Senegal',       fora:'Bolívia',        local:'Toronto',          rodada:3 },
+  { id:63, data:'26/06 · 21h', casa:'Cabo Verde',    fora:'Arábia Saudita', local:'Houston',          rodada:3 },
+  { id:64, data:'26/06 · 21h', casa:'Uruguai',       fora:'Espanha',        local:'Guadalajara',      rodada:3 },
+  { id:65, data:'27/06 · 00h', casa:'Egito',         fora:'Irã',            local:'Seattle',          rodada:3 },
+  { id:66, data:'27/06 · 00h', casa:'Nova Zelândia', fora:'Bélgica',        local:'Vancouver',        rodada:3 },
+  { id:67, data:'27/06 · 18h', casa:'Panamá',        fora:'Inglaterra',     local:'Nova York/NJ',     rodada:3 },
+  { id:68, data:'27/06 · 18h', casa:'Croácia',       fora:'Gana',           local:'Filadélfia',       rodada:3 },
+  { id:69, data:'27/06 · 20h30',casa:'Colômbia',     fora:'Portugal',       local:'Miami',            rodada:3 },
+  { id:70, data:'27/06 · 20h30',casa:'RD Congo',     fora:'Uzbequistão',    local:'Atlanta',          rodada:3 },
+  { id:71, data:'27/06 · 23h', casa:'Argélia',       fora:'Áustria',        local:'Kansas City',      rodada:3 },
+  { id:72, data:'27/06 · 23h', casa:'Jordânia',      fora:'Argentina',      local:'Dallas',           rodada:3 },
+  // ═══ OITAVAS ═══
+  { id:73, data:'28/06', casa:'1A',  fora:'2B',  local:'Oitavas',  rodada:4 },
+  { id:74, data:'29/06', casa:'1C',  fora:'2D',  local:'Oitavas',  rodada:4 },
+  { id:75, data:'30/06', casa:'1E',  fora:'2F',  local:'Oitavas',  rodada:4 },
+  { id:76, data:'01/07', casa:'1G',  fora:'2H',  local:'Oitavas',  rodada:4 },
+  { id:77, data:'02/07', casa:'1I',  fora:'2J',  local:'Oitavas',  rodada:4 },
+  { id:78, data:'02/07', casa:'1K',  fora:'2L',  local:'Oitavas',  rodada:4 },
+  { id:79, data:'03/07', casa:'1B',  fora:'2A',  local:'Oitavas',  rodada:4 },
+  { id:80, data:'03/07', casa:'1D',  fora:'2C',  local:'Oitavas',  rodada:4 },
+  { id:81, data:'04/07', casa:'1F',  fora:'2E',  local:'Oitavas',  rodada:4 },
+  { id:82, data:'04/07', casa:'1H',  fora:'2G',  local:'Oitavas',  rodada:4 },
+  { id:83, data:'05/07', casa:'1J',  fora:'2I',  local:'Oitavas',  rodada:4 },
+  { id:84, data:'05/07', casa:'1L',  fora:'2K',  local:'Oitavas',  rodada:4 },
+  { id:85, data:'06/07', casa:'3º-A/D/E',fora:'3º-B/C/F',local:'Oitavas',rodada:4 },
+  { id:86, data:'07/07', casa:'3º-G/H/I',fora:'3º-J/K/L',local:'Oitavas',rodada:4 },
+  { id:87, data:'07/07', casa:'3º-A/B/C',fora:'3º-D/E/F',local:'Oitavas',rodada:4 },
+  { id:88, data:'07/07', casa:'3º-G/J/K',fora:'3º-H/I/L',local:'Oitavas',rodada:4 },
+  // ═══ QUARTAS ═══
+  { id:89, data:'09/07', casa:'O73', fora:'O74',  local:'Quartas', rodada:5 },
+  { id:90, data:'09/07', casa:'O75', fora:'O76',  local:'Quartas', rodada:5 },
+  { id:91, data:'10/07', casa:'O77', fora:'O78',  local:'Quartas', rodada:5 },
+  { id:92, data:'10/07', casa:'O79', fora:'O80',  local:'Quartas', rodada:5 },
+  { id:93, data:'11/07', casa:'O81', fora:'O82',  local:'Quartas', rodada:5 },
+  { id:94, data:'11/07', casa:'O83', fora:'O84',  local:'Quartas', rodada:5 },
+  { id:95, data:'11/07', casa:'O85', fora:'O86',  local:'Quartas', rodada:5 },
+  { id:96, data:'12/07', casa:'O87', fora:'O88',  local:'Quartas', rodada:5 },
+  // ═══ SEMI ═══
+  { id:97, data:'14/07', casa:'Venc. Q89', fora:'Venc. Q90', local:'Semifinal', rodada:6 },
+  { id:98, data:'14/07', casa:'Venc. Q91', fora:'Venc. Q92', local:'Semifinal', rodada:6 },
+  { id:99, data:'15/07', casa:'Venc. Q93', fora:'Venc. Q94', local:'Semifinal', rodada:6 },
+  { id:100,data:'15/07', casa:'Venc. Q95', fora:'Venc. Q96', local:'Semifinal', rodada:6 },
+  // ═══ DISPUTA 3º ═══
+  { id:101,data:'18/07', casa:'Perd. S97', fora:'Perd. S98', local:'3º Lugar', rodada:7 },
+  { id:102,data:'18/07', casa:'Perd. S99', fora:'Perd. S100',local:'3º Lugar', rodada:7 },
+  // ═══ FINAL ═══
+  { id:103,data:'19/07', casa:'Venc. S97', fora:'Venc. S99', local:'Final – MetLife NJ', rodada:8 },
+  { id:104,data:'19/07', casa:'Venc. S98', fora:'Venc. S100',local:'Final – MetLife NJ', rodada:8 },
+];
+const RODADAS_NOMES = {
+  1:'1ª Rodada · Grupos', 2:'2ª Rodada · Grupos', 3:'3ª Rodada · Grupos',
+  4:'Oitavas de Final', 5:'Quartas de Final', 6:'Semifinais',
+  7:'Disputa de 3º Lugar', 8:'Final'
+};
+
+// ══════════════════════════════════════════════════════════════════
+//  CONFIGURAÇÃO — substitua pelos valores do seu projeto Supabase
+//  Project Settings → API
+// ══════════════════════════════════════════════════════════════════
+const SUPABASE_URL = 'https://zqaftttzeidbchmomczq.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWZ0dHR6ZWlkYmNobW9tY3pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTM2OTksImV4cCI6MjA5Njg2OTY5OX0.fQoDJDEzTLvmwM5r8hNcKY6UzR2skuVReFhH0uwl2nc';
+
+// ── CLIENTE SUPABASE (via CDN, sem build) ─────────────────────────
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ── ESTADO LOCAL (cache em memória) ──────────────────────────────
+let participanteAtivo = 'gigi';
+let palpites  = {};   // { 'gigi-7': {casa:2, fora:1} }
+let resultados = {};  // { 7: {casa:2, fora:1} }
+let bloqueados = {};  // { 'gigi': true }
+let carregando = false;
+
+// ── LOADING STATE ─────────────────────────────────────────────────
+function setLoading(on) {
+  carregando = on;
+  const el = document.getElementById('loading');
+  if (el) el.style.display = on ? 'flex' : 'none';
+}
+
+// ── INICIALIZAÇÃO ─────────────────────────────────────────────────
+async function init() {
+  setLoading(true);
+  await carregarTudo();
+  setLoading(false);
+  renderSeletor();
+  renderProgresso();
+  renderJogos();
+  renderRanking();
+  inscreverRealtime();
+}
+
+async function carregarTudo() {
+  const [resPalpites, resResultados, resStatus] = await Promise.all([
+    sb.from('palpites').select('*'),
+    sb.from('resultados').select('*'),
+    sb.from('status_participantes').select('*'),
+  ]);
+
+  palpites = {};
+  (resPalpites.data || []).forEach(r => {
+    palpites[`${r.participante}-${r.jogo_id}`] = { casa: r.gols_casa, fora: r.gols_fora };
+  });
+
+  resultados = {};
+  (resResultados.data || []).forEach(r => {
+    resultados[r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
+  });
+
+  bloqueados = {};
+  (resStatus.data || []).forEach(r => {
+    bloqueados[r.participante] = r.bloqueado;
+  });
+}
+
+// ── REALTIME — atualiza tela automaticamente ─────────────────────
+function inscreverRealtime() {
+  sb.channel('bolao-live')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'resultados' }, payload => {
+      const r = payload.new;
+      if (r) resultados[r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
+      renderProgresso();
+      renderRanking();
+      if (document.getElementById('pag-palpites').classList.contains('ativa')) renderJogos();
+      if (document.getElementById('pag-resultados').classList.contains('ativa')) renderResultados();
+    })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'palpites' }, payload => {
+      const r = payload.new;
+      if (r) palpites[`${r.participante}-${r.jogo_id}`] = { casa: r.gols_casa, fora: r.gols_fora };
+      renderRanking();
+    })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'status_participantes' }, payload => {
+      const r = payload.new;
+      if (r) bloqueados[r.participante] = r.bloqueado;
+      renderSeletor();
+      if (document.getElementById('pag-palpites').classList.contains('ativa')) renderJogos();
+    })
+    .subscribe();
+}
+
+// ── PONTUAÇÃO ────────────────────────────────────────────────────
+function calcPontos(pid) {
+  let total = 0, acertos = 0, exatos = 0;
+  JOGOS.forEach(j => {
+    const res  = resultados[j.id];
+    const palp = palpites[`${pid}-${j.id}`];
+    if (!res  || res.casa  === null || res.fora  === null) return;
+    if (!palp || palp.casa === null || palp.fora === null) return;
+    const rc = Number(res.casa),  rf = Number(res.fora);
+    const pc = Number(palp.casa), pf = Number(palp.fora);
+    if (pc === rc && pf === rf) { total += 3; exatos++; acertos++; }
+    else {
+      const rv = rc > rf ? 'c' : rf > rc ? 'f' : 'e';
+      const pv = pc > pf ? 'c' : pf > pc ? 'f' : 'e';
+      if (rv === pv) { total += 1; acertos++; }
+    }
+  });
+  return { total, acertos, exatos };
+}
+
+function getRanking() {
+  return PARTICIPANTES.map(p => ({ ...p, ...calcPontos(p.id) }))
+    .sort((a, b) => b.total - a.total || b.exatos - a.exatos);
+}
+
+function estaBloqueado(pid) { return !!bloqueados[pid]; }
+
+// ── RENDERS ───────────────────────────────────────────────────────
+function renderSeletor() {
+  document.getElementById('seletor-btns').innerHTML = PARTICIPANTES.map(p => {
+    const blq = estaBloqueado(p.id);
+    return `<button class="seletor-btn ${p.id===participanteAtivo?'ativo':''}" onclick="selecionar('${p.id}')">
+      <span class="iniciais ${p.avatar}">${p.ini}</span>
+      <span class="seletor-nome">${p.nome}</span>
+      ${blq ? '<span class="seletor-blq">confirmado</span>' : ''}
+    </button>`;
+  }).join('');
+}
+
+function contarJogados() {
+  return Object.keys(resultados).filter(id => {
+    const r = resultados[id];
+    return r && r.casa !== null && r.fora !== null;
+  }).length;
+}
+
+function renderProgresso() {
+  const j = contarJogados();
+  const pct = (j / 104) * 100;
+  document.getElementById('prog-num').innerHTML  = `${j}<small>/104</small>`;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-num2').innerHTML = `${j}<small>/104</small>`;
+  document.getElementById('prog-fill2').style.width = pct + '%';
+}
+
+function renderJogos() {
+  const lista = document.getElementById('jogos-lista');
+  const bloqueado = estaBloqueado(participanteAtivo);
+  const nomeP = PARTICIPANTES.find(p => p.id === participanteAtivo)?.nome || '';
+  let html = '';
+
+  if (bloqueado) {
+    html += `<div class="banner-ok">
+      <span class="banner-ok-marca">✓</span>
+      <div class="banner-ok-txt">
+        <strong>Palpites confirmados</strong>
+        <span>Os palpites de ${nomeP} estão registrados e não podem ser alterados.</span>
+      </div>
+    </div>`;
+  } else {
+    html += `<div class="aviso">
+      <div class="aviso-titulo">Atenção — preenchimento único</div>
+      <div class="aviso-texto">Você preenche os placares <strong>uma só vez</strong>. Ao confirmar no final, seus palpites ficam bloqueados e não poderão mais ser editados. Revise antes de confirmar.</div>
+    </div>`;
+  }
+
+  let rodadaAtual = null;
+  JOGOS.forEach(j => {
+    if (j.rodada !== rodadaAtual) {
+      rodadaAtual = j.rodada;
+      const rnum = String(j.rodada).padStart(2, '0');
+      html += `<div class="rodada"><span class="rodada-num">${rnum}</span><span class="rodada-nome">${RODADAS_NOMES[j.rodada]}</span><span class="rodada-linha"></span></div>`;
+    }
+    const key  = `${participanteAtivo}-${j.id}`;
+    const palp = palpites[key] || {};
+    const res  = resultados[j.id] || {};
+    const temRes = res.casa !== undefined && res.casa !== null;
+    const casaVal = palp.casa !== undefined ? palp.casa : '';
+    const foraVal = palp.fora !== undefined ? palp.fora : '';
+    const dis = bloqueado ? 'disabled' : '';
+    html += `
+    <div class="jogo ${j.brasil ? 'brasil' : ''}">
+      <span class="jogo-num">№${String(j.id).padStart(3,'0')}</span>
+      <div class="lado casa"><span class="lado-time">${j.casa}</span></div>
+      <div class="centro">
+        <span class="centro-meta">${j.data}</span>
+        <div class="placar">
+          <input class="placar-input" type="number" min="0" max="99" value="${casaVal}" ${dis}
+            oninput="salvarPalpite(${j.id},'casa',this.value)" id="p-${j.id}-casa">
+          <span class="placar-x">×</span>
+          <input class="placar-input" type="number" min="0" max="99" value="${foraVal}" ${dis}
+            oninput="salvarPalpite(${j.id},'fora',this.value)" id="p-${j.id}-fora">
+        </div>
+        <span class="placar-salvo" id="salvo-${j.id}">Registrado</span>
+        ${temRes ? `<span class="resultado-tag">Resultado ${res.casa}–${res.fora}</span>` : ''}
+      </div>
+      <div class="lado fora"><span class="lado-time">${j.fora}</span></div>
+    </div>`;
+  });
+
+  if (!bloqueado) {
+    html += `<div class="confirmar-area">
+      <button class="btn-confirmar" onclick="abrirModal()">Confirmar meus palpites</button>
+    </div>`;
+  }
+  lista.innerHTML = html;
+}
+
+function renderRanking() {
+  const rank = getRanking();
+  document.getElementById('rank-lista').innerHTML = rank.map((p, i) => {
+    const lider = i === 0 && p.total > 0;
+    return `
+    <div class="rank-linha ${lider ? 'lider' : ''}">
+      <div class="rank-pos ${i===0?'medalha-1':''}">${i + 1}</div>
+      <div class="rank-pessoa">
+        <span class="iniciais ${p.avatar}">${p.ini}</span>
+        <div>
+          <div class="rank-nome">${p.nome}</div>
+          <div class="rank-meta">${p.exatos} exato${p.exatos!==1?'s':''} · ${p.acertos} acerto${p.acertos!==1?'s':''}</div>
+        </div>
+      </div>
+      <div class="rank-pontos">
+        <div class="rank-pontos-num ${p.total===0?'zero':''}">${p.total}</div>
+        <div class="rank-pontos-label">ponto${p.total!==1?'s':''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderResultados() {
+  const lista = document.getElementById('resultados-lista');
+  let html = '', rodadaAtual = null;
+  JOGOS.forEach(j => {
+    if (j.rodada !== rodadaAtual) {
+      rodadaAtual = j.rodada;
+      const rnum = String(j.rodada).padStart(2,'0');
+      html += `<div class="rodada"><span class="rodada-num">${rnum}</span><span class="rodada-nome">${RODADAS_NOMES[j.rodada]}</span><span class="rodada-linha"></span></div>`;
+    }
+    const res = resultados[j.id] || {};
+    const temRes = res.casa !== undefined && res.casa !== null;
+    html += `
+    <div class="res-jogo">
+      <div class="res-jogo-head">
+        <span class="res-jogo-times">${j.casa} × ${j.fora}</span>
+        <span class="res-jogo-data">${j.data}</span>
+      </div>
+      <div class="res-controles">
+        <input class="res-input" type="number" min="0" max="99" placeholder="–"
+          value="${res.casa !== undefined ? res.casa : ''}" id="r-${j.id}-casa">
+        <span class="res-x">×</span>
+        <input class="res-input" type="number" min="0" max="99" placeholder="–"
+          value="${res.fora !== undefined ? res.fora : ''}" id="r-${j.id}-fora">
+        <button class="res-btn ${temRes?'salvo':''}" id="rbtn-${j.id}" onclick="salvarResultado(${j.id})">
+          ${temRes ? 'Atualizar' : 'Lançar'}
+        </button>
+      </div>
+    </div>`;
+  });
+  lista.innerHTML = html;
+}
+
+// ── AÇÕES ─────────────────────────────────────────────────────────
+function selecionar(id) {
+  participanteAtivo = id;
+  renderSeletor();
+  renderJogos();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+let toastTimer;
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+async function salvarPalpite(jogoId, tipo, valor) {
+  if (estaBloqueado(participanteAtivo)) return;
+  if (valor === '') return;
+
+  // Atualiza cache local imediatamente (otimista)
+  const key = `${participanteAtivo}-${jogoId}`;
+  if (!palpites[key]) palpites[key] = {};
+  palpites[key][tipo] = Number(valor);
+
+  // Verifica se já tem os dois gols preenchidos antes de gravar
+  const p = palpites[key];
+  if (p.casa === undefined || p.casa === '' || p.fora === undefined || p.fora === '') return;
+
+  const { error } = await sb.from('palpites').upsert({
+    participante: participanteAtivo,
+    jogo_id:  jogoId,
+    gols_casa: Number(p.casa),
+    gols_fora: Number(p.fora),
+  }, { onConflict: 'participante,jogo_id' });
+
+  if (!error) {
+    const el = document.getElementById(`salvo-${jogoId}`);
+    if (el) { el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1400); }
+    renderRanking();
+  } else {
+    mostrarToast('Erro ao salvar — tente novamente');
+  }
+}
+
+async function salvarResultado(jogoId) {
+  const c = document.getElementById(`r-${jogoId}-casa`).value;
+  const f = document.getElementById(`r-${jogoId}-fora`).value;
+  if (c === '' || f === '') { mostrarToast('Preencha os dois placares'); return; }
+
+  const { error } = await sb.from('resultados').upsert({
+    jogo_id:   jogoId,
+    gols_casa: Number(c),
+    gols_fora: Number(f),
+  }, { onConflict: 'jogo_id' });
+
+  if (!error) {
+    resultados[jogoId] = { casa: Number(c), fora: Number(f) };
+    const btn = document.getElementById(`rbtn-${jogoId}`);
+    if (btn) { btn.textContent = 'Atualizar'; btn.classList.add('salvo'); }
+    mostrarToast('Resultado lançado');
+    renderProgresso();
+    renderRanking();
+  } else {
+    mostrarToast('Erro ao lançar resultado');
+  }
+}
+
+function abrirModal()  { document.getElementById('modal').classList.add('show'); }
+function fecharModal() { document.getElementById('modal').classList.remove('show'); }
+
+async function confirmarPalpites() {
+  const { error } = await sb.from('status_participantes').update({
+    bloqueado:    true,
+    bloqueado_em: new Date().toISOString(),
+  }).eq('participante', participanteAtivo);
+
+  if (!error) {
+    bloqueados[participanteAtivo] = true;
+    fecharModal();
+    mostrarToast('Palpites confirmados e bloqueados');
+    renderSeletor();
+    renderJogos();
+    renderRanking();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    mostrarToast('Erro ao confirmar — tente novamente');
+    fecharModal();
+  }
+}
+
+function mudarAba(id) {
+  document.querySelectorAll('.nav-btn').forEach(a => a.classList.remove('ativa'));
+  document.querySelectorAll('.pagina').forEach(p => p.classList.remove('ativa'));
+  const idx = { palpites: 0, ranking: 1, resultados: 2 };
+  document.querySelectorAll('.nav-btn')[idx[id]].classList.add('ativa');
+  document.getElementById(`pag-${id}`).classList.add('ativa');
+  if (id === 'ranking')    renderRanking();
+  if (id === 'resultados') renderResultados();
+  if (id === 'palpites')   { renderSeletor(); renderJogos(); }
+}
+
+// ── START ─────────────────────────────────────────────────────────
+init();
+
+</script>
+</body>
+</html>
