@@ -724,216 +724,6 @@ body {
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--papel-2); }
 ::-webkit-scrollbar-thumb { background: var(--garrafa); }
-
-/* Badge confirmado no seletor */
-.seletor-blq {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--garrafa);
-  background: rgba(31,64,52,0.12);
-  border: 1px solid rgba(31,64,52,0.25);
-  padding: 2px 6px;
-  border-radius: 2px;
-}
-.seletor-btn.ativo .seletor-blq {
-  color: var(--ambar-claro);
-  background: rgba(200,149,74,0.15);
-  border-color: rgba(200,149,74,0.3);
-}
-
-/* Loading overlay */
-.loading-overlay {
-  position: fixed; inset: 0;
-  background: var(--papel);
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 16px;
-}
-.loading-titulo {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
-  font-style: italic;
-  color: var(--garrafa);
-}
-.loading-sub {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: var(--cinza);
-  text-transform: uppercase;
-}
-.loading-bar {
-  width: 120px;
-  height: 2px;
-  background: var(--linha);
-  position: relative;
-  overflow: hidden;
-}
-.loading-bar::after {
-  content: '';
-  position: absolute;
-  left: -40%;
-  width: 40%;
-  height: 100%;
-  background: var(--ambar);
-  animation: load-sweep 1s ease-in-out infinite;
-}
-@keyframes load-sweep {
-  to { left: 100%; }
-}
-
-/* ── NAVEGAÇÃO DE RODADAS ── */
-.rodada-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 20px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--linha);
-}
-.rodada-nav-info { flex: 1; }
-.rodada-nav-kicker {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--cinza);
-  margin-bottom: 3px;
-}
-.rodada-nav-titulo {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--tinta);
-  line-height: 1.1;
-}
-.rodada-nav-btns { display: flex; gap: 6px; }
-.rodada-nav-btn {
-  width: 36px; height: 36px;
-  background: none;
-  border: 1px solid var(--linha);
-  color: var(--cinza);
-  font-family: var(--serif);
-  font-size: 18px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s;
-  flex-shrink: 0;
-}
-.rodada-nav-btn:hover:not(:disabled) { border-color: var(--ambar); color: var(--ambar); }
-.rodada-nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
-
-/* Chips de rodada no topo */
-.rodada-chips {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-.rodada-chip {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  padding: 5px 10px;
-  border: 1px solid var(--linha);
-  background: none;
-  color: var(--cinza);
-  cursor: pointer;
-  transition: all 0.15s;
-  text-transform: uppercase;
-}
-.rodada-chip.atual { border-color: var(--tinta); background: var(--tinta); color: var(--papel); }
-.rodada-chip.confirmada { border-color: var(--garrafa); color: var(--garrafa); background: rgba(31,64,52,0.06); }
-.rodada-chip.travada { opacity: 0.35; cursor: not-allowed; }
-
-/* Badge confirmado no seletor */
-.seletor-blq {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--garrafa);
-  background: rgba(31,64,52,0.12);
-  border: 1px solid rgba(31,64,52,0.25);
-  padding: 2px 6px;
-}
-.seletor-btn.ativo .seletor-blq {
-  color: var(--ambar-claro);
-  background: rgba(200,149,74,0.15);
-  border-color: rgba(200,149,74,0.3);
-}
-
-/* Status de cada participante por rodada */
-.status-rodada {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-  padding: 12px 14px;
-  background: var(--papel-2);
-  border: 1px solid var(--linha);
-}
-.status-chip {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border: 1px solid var(--linha);
-  color: var(--cinza);
-}
-.status-chip.ok { border-color: var(--garrafa); color: var(--garrafa); background: rgba(31,64,52,0.06); }
-
-/* Loading overlay */
-.loading-overlay {
-  position: fixed; inset: 0;
-  background: var(--papel);
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 16px;
-}
-.loading-titulo {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
-  font-style: italic;
-  color: var(--garrafa);
-}
-.loading-sub {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: var(--cinza);
-  text-transform: uppercase;
-}
-.loading-bar {
-  width: 120px; height: 2px;
-  background: var(--linha);
-  position: relative; overflow: hidden;
-}
-.loading-bar::after {
-  content: '';
-  position: absolute; left: -40%; width: 40%; height: 100%;
-  background: var(--ambar);
-  animation: load-sweep 1s ease-in-out infinite;
-}
-@keyframes load-sweep { to { left: 100%; } }
-
 </style>
 </head>
 <body>
@@ -959,7 +749,6 @@ body {
     <div class="seletor-head">Selecione seu nome</div>
     <div class="seletor-btns" id="seletor-btns"></div>
   </div>
-  <div class="rodada-chips" id="rodada-chips"></div>
   <div class="progresso">
     <div class="progresso-num" id="prog-num">0<small>/104</small></div>
     <div class="progresso-track"><div class="progresso-fill" id="prog-fill" style="width:0%"></div></div>
@@ -992,20 +781,6 @@ body {
   Copa do Mundo FIFA 2026 — Edição Particular
 </footer>
 
-
-<div class="loading-overlay" id="loading">
-  <div class="loading-titulo">Bolão da Copa</div>
-  <div class="loading-bar"></div>
-  <div class="loading-sub">Carregando dados…</div>
-</div>
-
-</div>
-
-
-<div class="loading-overlay" id="loading">
-  <div class="loading-titulo">Bolão da Copa</div>
-  <div class="loading-bar"></div>
-  <div class="loading-sub">Carregando dados…</div>
 </div>
 
 <div class="modal" id="modal">
@@ -1026,15 +801,9 @@ body {
 
 <div class="toast" id="toast">Salvo</div>
 
-<!-- Supabase JS via CDN -->
-
-<!-- Supabase JS via CDN -->
-
-<!-- Supabase CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<!-- App -->
 <script>
+// ── DADOS ──────────────────────────────────────────────────────────────
 const PARTICIPANTES = [
   { id: 'gigi', nome: 'Gigi', avatar: 'c-gigi', ini: 'G' },
   { id: 'dede', nome: 'Dedé', avatar: 'c-dede', ini: 'D' },
@@ -1163,268 +932,167 @@ const RODADAS_NOMES = {
   7:'Disputa de 3º Lugar', 8:'Final'
 };
 
-const SUPABASE_URL = 'https://zqaftttzeidbchmomczq.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWZ0dHR6ZWlkYmNobW9tY3pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTM2OTksImV4cCI6MjA5Njg2OTY5OX0.fQoDJDEzTLvmwM5r8hNcKY6UzR2skuVReFhH0uwl2nc';
+// ── SUPABASE ─────────────────────────────────────────────────────────────
+const SB_URL = 'https://zqaftttzeidbchmomczq.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWZ0dHR6ZWlkYmNobW9tY3pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTM2OTksImV4cCI6MjA5Njg2OTY5OX0.fQoDJDEzTLvmwM5r8hNcKY6UzR2skuVReFhH0uwl2nc';
+const sb = supabase.createClient(SB_URL, SB_KEY);
 
-// ── CLIENTE SUPABASE (via CDN, sem build) ─────────────────────────
-const { createClient } = supabase;
-const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+// ── DATAS DE ABERTURA DE CADA RODADA (horário de Brasília) ────────────────
+// Rodada abre no dia seguinte ao último jogo da rodada anterior
+const RODADA_ABERTURA = {
+  1: new Date('2026-06-11T00:00:00-03:00'), // já aberta
+  2: new Date('2026-06-18T00:00:00-03:00'), // após R1 terminar em 17/06
+  3: new Date('2026-06-24T00:00:00-03:00'), // após R2 terminar em 23/06
+  4: new Date('2026-06-28T00:00:00-03:00'), // após R3 terminar em 27/06
+  5: new Date('2026-07-08T00:00:00-03:00'), // após oitavas em 07/07
+  6: new Date('2026-07-13T00:00:00-03:00'), // após quartas em 12/07
+  7: new Date('2026-07-16T00:00:00-03:00'), // após semis em 15/07
+  8: new Date('2026-07-19T00:00:00-03:00'), // final
+};
 
-// ── ESTADO ───────────────────────────────────────────────────────
+function rodadaLiberada() {
+  const agora = new Date();
+  let liberada = 1;
+  for (let r = 1; r <= 8; r++) {
+    if (agora >= RODADA_ABERTURA[r]) liberada = r;
+  }
+  return liberada;
+}
+
+// ── ESTADO ───────────────────────────────────────────────────────────────
 let participanteAtivo = 'gigi';
-let rodadaAtiva       = 1;           // rodada sendo visualizada
-let palpites          = {};          // { 'gigi-7': {casa, fora} }
-let resultados        = {};          // { 7: {casa, fora} }
-// bloqueios[participante][rodada] = true
-let bloqueios         = {};
-let rodadaLiberada    = 1;
-let realtimeAtivo     = false;
+let rodadaAtiva = 1;
+let palpites = {};
+let resultados = {};
+let palpitesBloqueados = {};
 
-const TOTAL_RODADAS   = 8;
-
-// ── INIT ─────────────────────────────────────────────────────────
-async function init() {
-  setLoading(true);
+async function carregarStorage() {
   try {
-    const [rPalpites, rResultados, rStatus] = await Promise.all([
-      sb.from('palpites').select('*'),
-      sb.from('resultados').select('*'),
-      sb.from('status_participantes').select('*'),
+    const [rP, rR, rS] = await Promise.all([
+      sb.from('palpites').select('participante,jogo_id,gols_casa,gols_fora'),
+      sb.from('resultados').select('jogo_id,gols_casa,gols_fora'),
+      sb.from('status_participantes').select('participante,bloqueado'),
     ]);
-
-    palpites = {};
-    ((rPalpites && rPalpites.data) || []).forEach(r => {
-      palpites[r.participante + '-' + r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
+    (rP.data||[]).forEach(r => {
+      palpites[r.participante+'-'+r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
     });
-
-    resultados = {};
-    ((rResultados && rResultados.data) || []).forEach(r => {
+    (rR.data||[]).forEach(r => {
       resultados[r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
     });
-
-    bloqueios = {};
-    PARTICIPANTES.forEach(p => { bloqueios[p.id] = {}; });
-    ((rStatus && rStatus.data) || []).forEach(r => {
-      if (!bloqueios[r.participante]) bloqueios[r.participante] = {};
-      if (r.bloqueado) bloqueios[r.participante][r.rodada] = true;
+    (rS.data||[]).forEach(r => {
+      if (r.bloqueado) palpitesBloqueados[r.participante] = true;
     });
-
-  } catch(e) {
-    console.warn('Erro ao carregar:', e);
-  }
-
-  calcRodadaLiberada();
-  rodadaAtiva = rodadaLiberada;
-  setLoading(false);
-  renderTudo();
-  try { inscreverRealtime(); } catch(e) { console.warn('Realtime falhou:', e); }
+  } catch(e) { console.error('Erro ao carregar:', e); }
 }
 
-// carregarTudo inline no init
+function estaBloqueado(pid) { return !!palpitesBloqueados[pid]; }
+function rodadaTravada(r) { return r > rodadaLiberada(); }
 
-// Calcula qual é a rodada mais avançada que está liberada pra jogar
-function calcRodadaLiberada() {
-  for (let r = 1; r <= TOTAL_RODADAS; r++) {
-    const todosConfirmaram = PARTICIPANTES.every(p => bloqueios[p.id]?.[r]);
-    if (!todosConfirmaram) { rodadaLiberada = r; return; }
-  }
-  rodadaLiberada = TOTAL_RODADAS; // todos confirmaram tudo
-}
-
-function estaBloqueado(pid, rodada) {
-  return !!(bloqueios[pid]?.[rodada]);
-}
-
-// Jogos filtrados por rodada
-function jogosDaRodada(r) {
-  return JOGOS.filter(j => j.rodada === r);
-}
-
-// ── PONTUAÇÃO ────────────────────────────────────────────────────
+// ── PONTUAÇÃO ────────────────────────────────────────────────────────────
 function calcPontos(pid) {
   let total = 0, acertos = 0, exatos = 0;
   JOGOS.forEach(j => {
-    const res  = resultados[j.id];
+    const res = resultados[j.id];
     const palp = palpites[`${pid}-${j.id}`];
-    if (!res  || res.casa  == null) return;
-    if (!palp || palp.casa == null) return;
-    const rc = Number(res.casa),  rf = Number(res.fora);
+    if (!res || res.casa==='' || res.casa===null || res.fora==='' || res.fora===null) return;
+    if (!palp || palp.casa==='' || palp.casa===null || palp.fora==='' || palp.fora===null) return;
+    const rc = Number(res.casa), rf = Number(res.fora);
     const pc = Number(palp.casa), pf = Number(palp.fora);
     if (pc === rc && pf === rf) { total += 3; exatos++; acertos++; }
     else {
-      const rv = rc > rf ? 'c' : rf > rc ? 'f' : 'e';
-      const pv = pc > pf ? 'c' : pf > pc ? 'f' : 'e';
-      if (rv === pv) { total += 1; acertos++; }
+      const resVenc = rc > rf ? 'casa' : rf > rc ? 'fora' : 'emp';
+      const pVenc   = pc > pf ? 'casa' : pf > pc ? 'fora' : 'emp';
+      if (resVenc === pVenc) { total += 1; acertos++; }
     }
   });
   return { total, acertos, exatos };
 }
-
 function getRanking() {
   return PARTICIPANTES.map(p => ({ ...p, ...calcPontos(p.id) }))
-    .sort((a, b) => b.total - a.total || b.exatos - a.exatos);
+    .sort((a,b) => b.total - a.total || b.exatos - a.exatos);
 }
 
-// ── REALTIME ─────────────────────────────────────────────────────
-function inscreverRealtime() {
-  if (realtimeAtivo) return;
-  realtimeAtivo = true;
-  sb.channel('bolao-live')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'resultados' }, payload => {
-      const r = payload.new;
-      if (r) resultados[r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
-      renderProgresso();
-      renderRanking();
-      renderJogos();
-      if (document.getElementById('pag-resultados').classList.contains('ativa')) renderResultados();
-    })
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'palpites' }, payload => {
-      const r = payload.new;
-      if (r) palpites[`${r.participante}-${r.jogo_id}`] = { casa: r.gols_casa, fora: r.gols_fora };
-      renderRanking();
-    })
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'status_participantes' }, payload => {
-      const r = payload.new;
-      if (r && r.bloqueado) {
-        if (!bloqueios[r.participante]) bloqueios[r.participante] = {};
-        bloqueios[r.participante][r.rodada] = true;
-      }
-      calcRodadaLiberada();
-      renderTudo();
-    })
-    .subscribe();
-}
-
-// ── RENDERS ──────────────────────────────────────────────────────
-function setLoading(on) {
-  const el = document.getElementById('loading');
-  if (el) el.style.display = on ? 'flex' : 'none';
-}
-
-function renderTudo() {
-  renderSeletor();
-  renderChips();
-  renderProgresso();
-  renderJogos();
-  renderRanking();
-}
-
+// ── RENDER ───────────────────────────────────────────────────────────────
 function renderSeletor() {
-  document.getElementById('seletor-btns').innerHTML = PARTICIPANTES.map(p => {
-    const blq = estaBloqueado(p.id, rodadaAtiva);
-    return `<button class="seletor-btn ${p.id===participanteAtivo?'ativo':''}" onclick="selecionar('${p.id}')">
+  document.getElementById('seletor-btns').innerHTML = PARTICIPANTES.map(p =>
+    `<button class="seletor-btn ${p.id===participanteAtivo?'ativo':''}" onclick="selecionar('${p.id}')">
       <span class="iniciais ${p.avatar}">${p.ini}</span>
       <span class="seletor-nome">${p.nome}</span>
-      ${blq ? '<span class="seletor-blq">confirmado</span>' : ''}
-    </button>`;
-  }).join('');
-}
-
-function renderChips() {
-  const wrap = document.getElementById('rodada-chips');
-  if (!wrap) return;
-  wrap.innerHTML = Array.from({length: TOTAL_RODADAS}, (_,i) => {
-    const r = i + 1;
-    const todosBlq = PARTICIPANTES.every(p => bloqueios[p.id]?.[r]);
-    const travada  = r > rodadaLiberada;
-    let cls = '';
-    if (r === rodadaAtiva)    cls = 'atual';
-    else if (todosBlq)        cls = 'confirmada';
-    else if (travada)         cls = 'travada';
-    const onclick = travada ? '' : `onclick="irParaRodada(${r})"`;
-    const label = r <= 3 ? `R${r}` : RODADAS_NOMES[r].split('·')[0].trim().split(' ')[0];
-    return `<button class="rodada-chip ${cls}" ${onclick} title="${RODADAS_NOMES[r]}">${label}</button>`;
-  }).join('');
+    </button>`
+  ).join('');
 }
 
 function contarJogados() {
   return Object.keys(resultados).filter(id => {
     const r = resultados[id];
-    return r && r.casa != null && r.fora != null;
+    return r && r.casa !== '' && r.casa !== null && r.fora !== '' && r.fora !== null;
   }).length;
 }
 
 function renderProgresso() {
   const j = contarJogados();
-  const pct = (j / 104) * 100;
-  ['prog-num','prog-num2'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = `${j}<small>/104</small>`;
-  });
-  ['prog-fill','prog-fill2'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.width = pct + '%';
-  });
+  const pct = (j/104)*100;
+  document.getElementById('prog-num').innerHTML = `${j}<small>/104</small>`;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-num2').innerHTML = `${j}<small>/104</small>`;
+  document.getElementById('prog-fill2').style.width = pct + '%';
 }
 
 function renderJogos() {
   const lista = document.getElementById('jogos-lista');
-  if (!lista) return;
-
-  const bloqueado  = estaBloqueado(participanteAtivo, rodadaAtiva);
-  const travada    = rodadaAtiva > rodadaLiberada;
-  const nomeP      = PARTICIPANTES.find(p => p.id === participanteAtivo)?.nome || '';
-  const jogos      = jogosDaRodada(rodadaAtiva);
-  const rNome      = RODADAS_NOMES[rodadaAtiva];
-  const rNum       = String(rodadaAtiva).padStart(2,'0');
-
+  const bloqueado = estaBloqueado(participanteAtivo);
+  const travada   = rodadaTravada(rodadaAtiva);
+  const nomeP     = PARTICIPANTES.find(p=>p.id===participanteAtivo)?.nome || '';
+  const jogos     = JOGOS.filter(j => j.rodada === rodadaAtiva);
+  const atual     = rodadaLiberada();
   let html = '';
 
-  // Navegação de rodada
-  html += `
-  <div class="rodada-nav">
-    <div class="rodada-nav-info">
-      <div class="rodada-nav-kicker">Rodada ${rNum} · ${jogos.length} jogos</div>
-      <div class="rodada-nav-titulo">${rNome}</div>
+  // Nav da rodada
+  html += `<div class="rod-nav">
+    <div>
+      <div class="rod-nav-kicker">Rodada ${String(rodadaAtiva).padStart(2,'0')} · ${jogos.length} jogos</div>
+      <div class="rod-nav-titulo">${RODADAS_NOMES[rodadaAtiva]}</div>
     </div>
-    <div class="rodada-nav-btns">
-      <button class="rodada-nav-btn" onclick="irParaRodada(${rodadaAtiva-1})" ${rodadaAtiva<=1?'disabled':''}>&#8592;</button>
-      <button class="rodada-nav-btn" onclick="irParaRodada(${rodadaAtiva+1})" ${rodadaAtiva>=rodadaLiberada?'disabled':''}>&#8594;</button>
+    <div class="rod-nav-btns">
+      <button class="rod-btn" onclick="irParaRodada(${rodadaAtiva-1})" ${rodadaAtiva<=1?'disabled':''}>&#8592;</button>
+      <button class="rod-btn" onclick="irParaRodada(${rodadaAtiva+1})" ${rodadaAtiva>=atual?'disabled':''}>&#8594;</button>
     </div>
   </div>`;
 
-  // Status de quem confirmou essa rodada
-  const statusHtml = PARTICIPANTES.map(p => {
-    const ok = estaBloqueado(p.id, rodadaAtiva);
-    return `<span class="status-chip ${ok?'ok':''}">${p.nome}${ok?' ✓':''}</span>`;
-  }).join('');
-  html += `<div class="status-rodada">${statusHtml}</div>`;
-
-  // Rodada travada
+  // Rodada travada por data
   if (travada) {
-    html += `<div class="aviso">
-      <div class="aviso-titulo">Rodada bloqueada</div>
-      <div class="aviso-texto">Esta rodada abre quando <strong>todos os participantes</strong> confirmarem a rodada anterior.</div>
+    html += `<div class="aviso-travada">
+      <div class="aviso-travada-titulo">Rodada ainda não disponível</div>
+      <div class="aviso-travada-txt">Esta rodada abre automaticamente após o término da rodada anterior.</div>
     </div>`;
-    lista.innerHTML = html;
-    return;
+    lista.innerHTML = html; return;
   }
 
-  // Já confirmou
+  // Banner / aviso
   if (bloqueado) {
     html += `<div class="banner-ok">
       <span class="banner-ok-marca">✓</span>
       <div class="banner-ok-txt">
-        <strong>Rodada confirmada</strong>
+        <strong>Palpites confirmados</strong>
         <span>Os palpites de ${nomeP} para esta rodada estão registrados.</span>
       </div>
     </div>`;
   } else {
     html += `<div class="aviso">
-      <div class="aviso-titulo">Atenção — preenchimento único por rodada</div>
-      <div class="aviso-texto">Preencha os placares desta rodada e confirme ao final. <strong>Não será possível editar depois de confirmar.</strong></div>
+      <div class="aviso-titulo">Preenchimento único por rodada</div>
+      <div class="aviso-texto">Preencha os placares e confirme. <strong>Não poderá editar depois de confirmar.</strong></div>
     </div>`;
   }
 
-  // Jogos
+  // Jogos da rodada ativa
   jogos.forEach(j => {
-    const key     = `${participanteAtivo}-${j.id}`;
-    const palp    = palpites[key] || {};
-    const res     = resultados[j.id] || {};
-    const temRes  = res.casa != null;
+    const key = `${participanteAtivo}-${j.id}`;
+    const palp = palpites[key] || {};
+    const res  = resultados[j.id] || {};
+    const temRes = res.casa !== undefined && res.casa !== '' && res.casa !== null;
     const casaVal = palp.casa !== undefined ? palp.casa : '';
     const foraVal = palp.fora !== undefined ? palp.fora : '';
-    const dis     = bloqueado ? 'disabled' : '';
+    const dis = bloqueado ? 'disabled' : '';
     html += `
     <div class="jogo ${j.brasil?'brasil':''}">
       <span class="jogo-num">№${String(j.id).padStart(3,'0')}</span>
@@ -1450,7 +1118,6 @@ function renderJogos() {
       <button class="btn-confirmar" onclick="abrirModal()">Confirmar rodada ${rodadaAtiva}</button>
     </div>`;
   }
-
   lista.innerHTML = html;
 }
 
@@ -1458,9 +1125,10 @@ function renderRanking() {
   const rank = getRanking();
   document.getElementById('rank-lista').innerHTML = rank.map((p,i) => {
     const lider = i===0 && p.total>0;
+    const posClass = i===0 ? 'medalha-1' : '';
     return `
     <div class="rank-linha ${lider?'lider':''}">
-      <div class="rank-pos ${i===0?'medalha-1':''}">${i+1}</div>
+      <div class="rank-pos ${posClass}">${i+1}</div>
       <div class="rank-pessoa">
         <span class="iniciais ${p.avatar}">${p.ini}</span>
         <div>
@@ -1478,16 +1146,15 @@ function renderRanking() {
 
 function renderResultados() {
   const lista = document.getElementById('resultados-lista');
-  if (!lista) return;
-  let html = '', rodadaAtualR = null;
+  let html = '', rodadaAtual = null;
   JOGOS.forEach(j => {
-    if (j.rodada !== rodadaAtualR) {
-      rodadaAtualR = j.rodada;
+    if (j.rodada !== rodadaAtual) {
+      rodadaAtual = j.rodada;
       const rnum = String(j.rodada).padStart(2,'0');
       html += `<div class="rodada"><span class="rodada-num">${rnum}</span><span class="rodada-nome">${RODADAS_NOMES[j.rodada]}</span><span class="rodada-linha"></span></div>`;
     }
-    const res    = resultados[j.id] || {};
-    const temRes = res.casa != null;
+    const res = resultados[j.id] || {};
+    const temRes = res.casa !== undefined && res.casa !== '' && res.casa !== null;
     html += `
     <div class="res-jogo">
       <div class="res-jogo-head">
@@ -1496,12 +1163,12 @@ function renderResultados() {
       </div>
       <div class="res-controles">
         <input class="res-input" type="number" min="0" max="99" placeholder="–"
-          value="${res.casa!=null?res.casa:''}" id="r-${j.id}-casa">
+          value="${res.casa!==undefined?res.casa:''}" id="r-${j.id}-casa">
         <span class="res-x">×</span>
         <input class="res-input" type="number" min="0" max="99" placeholder="–"
-          value="${res.fora!=null?res.fora:''}" id="r-${j.id}-fora">
+          value="${res.fora!==undefined?res.fora:''}" id="r-${j.id}-fora">
         <button class="res-btn ${temRes?'salvo':''}" id="rbtn-${j.id}" onclick="salvarResultado(${j.id})">
-          ${temRes?'Atualizar':'Lançar'}
+          ${temRes ? 'Atualizar' : 'Lançar'}
         </button>
       </div>
     </div>`;
@@ -1509,19 +1176,9 @@ function renderResultados() {
   lista.innerHTML = html;
 }
 
-// ── AÇÕES ────────────────────────────────────────────────────────
+// ── AÇÕES ─────────────────────────────────────────────────────────────
 function selecionar(id) {
   participanteAtivo = id;
-  renderSeletor();
-  renderJogos();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function irParaRodada(r) {
-  if (r < 1 || r > TOTAL_RODADAS) return;
-  if (r > rodadaLiberada) return;
-  rodadaAtiva = r;
-  renderChips();
   renderSeletor();
   renderJogos();
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1533,96 +1190,110 @@ function mostrarToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 1900);
 }
 
 async function salvarPalpite(jogoId, tipo, valor) {
-  if (estaBloqueado(participanteAtivo, rodadaAtiva)) return;
-  if (valor === '') return;
-
+  if (estaBloqueado(participanteAtivo) || valor === '') return;
   const key = `${participanteAtivo}-${jogoId}`;
   if (!palpites[key]) palpites[key] = {};
   palpites[key][tipo] = Number(valor);
-
   const p = palpites[key];
   if (p.casa == null || p.casa === '' || p.fora == null || p.fora === '') return;
-
-  const { error } = await sb.from('palpites').upsert({
-    participante: participanteAtivo,
-    jogo_id:   jogoId,
-    gols_casa: Number(p.casa),
-    gols_fora: Number(p.fora),
-  }, { onConflict: 'participante,jogo_id' });
-
+  const { error } = await sb.from('palpites').upsert(
+    { participante: participanteAtivo, jogo_id: jogoId, gols_casa: +p.casa, gols_fora: +p.fora },
+    { onConflict: 'participante,jogo_id' }
+  );
   if (!error) {
     const el = document.getElementById(`salvo-${jogoId}`);
-    if (el) { el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1400); }
+    if (el) { el.classList.add('show'); setTimeout(()=>el.classList.remove('show'), 1400); }
     renderRanking();
-  } else {
-    mostrarToast('Erro ao salvar — tente novamente');
-  }
+  } else { mostrarToast('Erro ao salvar'); }
 }
 
 async function salvarResultado(jogoId) {
   const c = document.getElementById(`r-${jogoId}-casa`).value;
   const f = document.getElementById(`r-${jogoId}-fora`).value;
   if (c === '' || f === '') { mostrarToast('Preencha os dois placares'); return; }
-
-  const { error } = await sb.from('resultados').upsert({
-    jogo_id:   jogoId,
-    gols_casa: Number(c),
-    gols_fora: Number(f),
-  }, { onConflict: 'jogo_id' });
-
+  const { error } = await sb.from('resultados').upsert(
+    { jogo_id: jogoId, gols_casa: +c, gols_fora: +f },
+    { onConflict: 'jogo_id' }
+  );
   if (!error) {
-    resultados[jogoId] = { casa: Number(c), fora: Number(f) };
+    resultados[jogoId] = { casa: +c, fora: +f };
     const btn = document.getElementById(`rbtn-${jogoId}`);
     if (btn) { btn.textContent = 'Atualizar'; btn.classList.add('salvo'); }
     mostrarToast('Resultado lançado');
     renderProgresso();
     renderRanking();
-  } else {
-    mostrarToast('Erro ao lançar resultado');
-  }
+  } else { mostrarToast('Erro ao lançar resultado'); }
 }
 
-function abrirModal()  { document.getElementById('modal').classList.add('show'); }
+function abrirModal() { document.getElementById('modal').classList.add('show'); }
 function fecharModal() { document.getElementById('modal').classList.remove('show'); }
-
 async function confirmarPalpites() {
-  const { error } = await sb.from('status_participantes').upsert({
-    participante: participanteAtivo,
-    rodada:       rodadaAtiva,
-    bloqueado:    true,
-    bloqueado_em: new Date().toISOString(),
-  }, { onConflict: 'participante,rodada' });
-
+  const { error } = await sb.from('status_participantes').upsert(
+    { participante: participanteAtivo, bloqueado: true, bloqueado_em: new Date().toISOString() },
+    { onConflict: 'participante' }
+  );
+  fecharModal();
   if (!error) {
-    if (!bloqueios[participanteAtivo]) bloqueios[participanteAtivo] = {};
-    bloqueios[participanteAtivo][rodadaAtiva] = true;
-    calcRodadaLiberada();
-    fecharModal();
-    mostrarToast('Rodada confirmada!');
-    renderTudo();
+    palpitesBloqueados[participanteAtivo] = true;
+    mostrarToast('Palpites confirmados e bloqueados');
+    renderJogos();
+    renderRanking();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    mostrarToast('Erro ao confirmar — tente novamente');
-    fecharModal();
-  }
+  } else { mostrarToast('Erro ao confirmar'); }
 }
 
 function mudarAba(id) {
-  document.querySelectorAll('.nav-btn').forEach(a => a.classList.remove('ativa'));
-  document.querySelectorAll('.pagina').forEach(p => p.classList.remove('ativa'));
-  const idx = { palpites:0, ranking:1, resultados:2 };
+  document.querySelectorAll('.nav-btn').forEach(a=>a.classList.remove('ativa'));
+  document.querySelectorAll('.pagina').forEach(p=>p.classList.remove('ativa'));
+  const idx = {palpites:0, ranking:1, resultados:2};
   document.querySelectorAll('.nav-btn')[idx[id]].classList.add('ativa');
   document.getElementById(`pag-${id}`).classList.add('ativa');
-  if (id==='ranking')    renderRanking();
+  if (id==='ranking') renderRanking();
   if (id==='resultados') renderResultados();
-  if (id==='palpites')   renderTudo();
+  if (id==='palpites') { renderSeletor(); renderJogos(); }
 }
 
-init();
+// ── INIT ─────────────────────────────────────────────────────────────────
+(async () => {
+  rodadaAtiva = rodadaLiberada();
+  await carregarStorage();
+  renderSeletor();
+  renderChips();
+  renderProgresso();
+  renderJogos();
+  renderRanking();
+})();
+
+function renderChips() {
+  const wrap = document.getElementById('rodada-chips');
+  if (!wrap) return;
+  const atual = rodadaLiberada();
+  const NOMES_CURTOS = {1:'R1',2:'R2',3:'R3',4:'Oitavas',5:'Quartas',6:'Semis',7:'3º Lugar',8:'Final'};
+  wrap.innerHTML = Array.from({length:8}, (_,i) => {
+    const r = i+1;
+    const travada = r > atual;
+    const ativa   = r === rodadaAtiva;
+    return `<button
+      class="rodada-chip ${ativa?'ativa':''} ${travada?'travada':''}"
+      onclick="${travada?'':('irParaRodada('+r+')')}"
+      title="${RODADAS_NOMES[r]}"
+      ${travada?'disabled':''}
+    >${NOMES_CURTOS[r]}</button>`;
+  }).join('');
+}
+
+function irParaRodada(r) {
+  if (rodadaTravada(r)) return;
+  rodadaAtiva = r;
+  renderChips();
+  renderSeletor();
+  renderJogos();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 </script>
 </body>
 </html>
