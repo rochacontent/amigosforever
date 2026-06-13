@@ -1177,9 +1177,8 @@ let palpites          = {};          // { 'gigi-7': {casa, fora} }
 let resultados        = {};          // { 7: {casa, fora} }
 // bloqueios[participante][rodada] = true
 let bloqueios         = {};
-// rodada liberada = a menor rodada onde nem todos confirmaram ainda
-// (ou a próxima, se todos confirmaram a atual)
 let rodadaLiberada    = 1;
+let realtimeAtivo     = false;
 
 const TOTAL_RODADAS   = 8;
 
@@ -1268,6 +1267,8 @@ function getRanking() {
 
 // ── REALTIME ─────────────────────────────────────────────────────
 function inscreverRealtime() {
+  if (realtimeAtivo) return;
+  realtimeAtivo = true;
   sb.channel('bolao-live')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'resultados' }, payload => {
       const r = payload.new;
