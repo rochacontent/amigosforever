@@ -1186,12 +1186,20 @@ const TOTAL_RODADAS   = 8;
 // ── INIT ─────────────────────────────────────────────────────────
 async function init() {
   setLoading(true);
-  await carregarTudo();
+  try {
+    // Timeout de 8 segundos — se o Supabase não responder, carrega mesmo assim
+    await Promise.race([
+      carregarTudo(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+    ]);
+  } catch(e) {
+    console.warn('Supabase demorou ou falhou:', e.message);
+  }
   calcRodadaLiberada();
   rodadaAtiva = rodadaLiberada;
   setLoading(false);
   renderTudo();
-  inscreverRealtime();
+  try { inscreverRealtime(); } catch(e) { console.warn('Realtime falhou:', e); }
 }
 
 async function carregarTudo() {
@@ -1202,19 +1210,18 @@ async function carregarTudo() {
   ]);
 
   palpites = {};
-  (rPalpites.data || []).forEach(r => {
+  ((rPalpites && rPalpites.data) || []).forEach(r => {
     palpites[`${r.participante}-${r.jogo_id}`] = { casa: r.gols_casa, fora: r.gols_fora };
   });
 
   resultados = {};
-  (rResultados.data || []).forEach(r => {
+  ((rResultados && rResultados.data) || []).forEach(r => {
     resultados[r.jogo_id] = { casa: r.gols_casa, fora: r.gols_fora };
   });
 
-  // bloqueios[participante] = { 1: true, 2: true, ... }
   bloqueios = {};
   PARTICIPANTES.forEach(p => { bloqueios[p.id] = {}; });
-  (rStatus.data || []).forEach(r => {
+  ((rStatus && rStatus.data) || []).forEach(r => {
     if (!bloqueios[r.participante]) bloqueios[r.participante] = {};
     if (r.bloqueado) bloqueios[r.participante][r.rodada] = true;
   });
