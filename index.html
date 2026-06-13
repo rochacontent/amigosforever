@@ -1029,7 +1029,11 @@ body {
 <!-- Supabase JS via CDN -->
 
 <!-- Supabase JS via CDN -->
+
+<!-- Supabase CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- App -->
 <script>
 const PARTICIPANTES = [
   { id: 'gigi', nome: 'Gigi', avatar: 'c-gigi', ini: 'G' },
@@ -1159,10 +1163,6 @@ const RODADAS_NOMES = {
   7:'Disputa de 3º Lugar', 8:'Final'
 };
 
-// ══════════════════════════════════════════════════════════════════
-//  CONFIGURAÇÃO — substitua pelos valores do seu projeto Supabase
-//  Project Settings → API
-// ══════════════════════════════════════════════════════════════════
 const SUPABASE_URL = 'https://zqaftttzeidbchmomczq.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWZ0dHR6ZWlkYmNobW9tY3pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTM2OTksImV4cCI6MjA5Njg2OTY5OX0.fQoDJDEzTLvmwM5r8hNcKY6UzR2skuVReFhH0uwl2nc';
 
@@ -1619,7 +1619,6 @@ function mudarAba(id) {
 }
 
 init();
-
 </script>
 </body>
 </html>
